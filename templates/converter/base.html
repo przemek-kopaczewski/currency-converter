@@ -7,12 +7,19 @@
 <body>
 <form method="post">
     {% csrf_token %}
-    <input type="text" name="pln">
+    <input type="text" name="pln" placeholder="PLN to ...">
     <select name="currency_type">
         {% for currency in rates %}
         <option value="{{ currency.code }}">{{ currency.code }}</option>
         {% endfor %}
     </select>
+    <br>
+    <select name="currency_type">
+        {% for currency in rates %}
+        <option value="{{ currency.code }}">{{ currency.code }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="val" placeholder="... to PLN">
     <button type="submit">Convert</button>
     <button type="reset">Reset</button>
 </form>

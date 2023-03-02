@@ -1,5 +1,5 @@
-from django.shortcuts import render
 import requests
+from django.shortcuts import render
 
 
 def get_exchange_rates():
@@ -9,7 +9,7 @@ def get_exchange_rates():
     return data[0]['rates']
 
 
-def converter(pln, currency_type, rates):
+def pln_to_currency(pln, currency_type, rates):
     for rate in rates:
         if rate['code'] == currency_type:
             result = float(pln) / float(rate['mid'])
@@ -17,15 +17,27 @@ def converter(pln, currency_type, rates):
     return None
 
 
+def currency_to_pln(val, currency_type, rates):
+    for rate in rates:
+        if rate['code'] == currency_type:
+            result = float(val) * float(rate['mid'])
+            return round(result, 2)
+    return None
+
+
 def base(request):
     template_name = 'converter/base.html'
+    rates = get_exchange_rates()
+    result = None
 
     if request.method == "POST":
-        pln = request.POST['pln']
+        pln = request.POST.get('pln')
+        val = request.POST.get('val')
         currency_type = request.POST.get('currency_type')
-        rates = get_exchange_rates()
-        result = converter(pln, currency_type, rates)
-        return render(request, template_name, {'result': result, 'rates': rates})
 
-    rates = get_exchange_rates()
-    return render(request, template_name, {'rates': rates})
+        if pln:
+            result = pln_to_currency(pln, currency_type, rates)
+        elif val:
+            result = currency_to_pln(val, currency_type, rates)
+
+    return render(request, template_name, {'result': result, 'rates': rates})
