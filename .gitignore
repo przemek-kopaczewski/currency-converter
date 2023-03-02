@@ -1,2 +1,7 @@
 venv/
 .idea/
+.env
+converter/__pycache__/
+converter/migrations/__pycache__/
+currencyconverter/__pycache__/
+db.sqlite3
