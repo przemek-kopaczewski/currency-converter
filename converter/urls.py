@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import base
+from .views import main_converter
 
 urlpatterns = [
-    path('', base, name="base"),
+    path('', main_converter, name="main_converter"),
 ]
