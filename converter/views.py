@@ -9,19 +9,19 @@ def get_exchange_rates():
     return data[0]['rates']
 
 
-def pln_to_currency(pln, currency_type, rates):
+def pln_to_currency(pln_value, currency_type, rates):
     for rate in rates:
         if rate['code'] == currency_type:
-            result = float(pln) / float(rate['mid'])
-            return round(result, 2)
+            result = float(pln_value) / float(rate['mid'])
+            return round(result, 4)
     return None
 
 
-def currency_to_pln(val, currency_type, rates):
+def currency_to_pln(currency_value, currency_type, rates):
     for rate in rates:
         if rate['code'] == currency_type:
-            result = float(val) * float(rate['mid'])
-            return round(result, 2)
+            result = float(currency_value) * float(rate['mid'])
+            return round(result, 4)
     return None
 
 
@@ -33,16 +33,22 @@ def main_converter(request):
     currency_type = None
 
     if request.method == "POST":
-        pln = request.POST.get('pln')
-        val = request.POST.get('val')
-        currency_type = request.POST.get('currency_type')
+        pln_value = request.POST.get('pln_value')
+        currency_value = request.POST.get('currency_value')
 
-        if pln:
-            result = pln_to_currency(pln, currency_type, rates)
+        if pln_value:
+            currency_type = request.POST.get('pln_to_currency_type')
+            result = pln_to_currency(pln_value, currency_type, rates)
             exchange_type = 'pln_to_currency'
-        elif val:
-            result = currency_to_pln(val, currency_type, rates)
+        elif currency_value:
+            currency_type = request.POST.get('currency_type_to_pln')
+            result = currency_to_pln(currency_value, currency_type, rates)
             exchange_type = 'currency_to_pln'
 
-    return render(request, template_name, {'result': result, 'rates': rates, 'exchange_type': exchange_type,
-                                           'currency': currency_type})
+    context = {
+        'result': result,
+        'rates': rates,
+        'exchange_type': exchange_type,
+        'currency': currency_type,
+    }
+    return render(request, template_name, context)

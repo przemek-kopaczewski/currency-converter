@@ -5,3 +5,4 @@ converter/__pycache__/
 converter/migrations/__pycache__/
 currencyconverter/__pycache__/
 db.sqlite3
+converter/tests/__pycache__/

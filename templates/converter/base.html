@@ -12,10 +12,10 @@
     <div class="row justify-content-center mt-2">
         <div class="col-auto">
             <label>Enter the amount pln</label>
-            <input type="text" name="pln" class="form-control mb-2">
+            <input type="text" name="pln_value" class="form-control mb-2">
             <label>Select to which currency</label>
             <br>
-            <select class="js-example-basic-single" name="currency_type">
+            <select class="js-example-basic-single" name="pln_to_currency_type">
                 {% for currency in rates %}
                 <option value="{{ currency.code }}">{{ currency.code }}</option>
                 {% endfor %}
@@ -23,10 +23,10 @@
         </div>
         <div class="col-auto">
             <label>Enter the currency amount</label>
-            <input type="text" name="val" class="form-control mb-2">
+            <input type="text" name="currency_value" class="form-control mb-2">
             <label>Select from which currency</label>
             <br>
-            <select class="js-example-basic-single" name="currency_type">
+            <select class="js-example-basic-single" name="currency_type_to_pln">
                 {% for currency in rates %}
                 <option value="{{ currency.code }}">{{ currency.code }}</option>
                 {% endfor %}
