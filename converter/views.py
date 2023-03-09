@@ -36,11 +36,11 @@ def main_converter(request):
         pln_value = request.POST.get('pln_value')
         currency_value = request.POST.get('currency_value')
 
-        if pln_value:
+        if pln_value and float(pln_value) > 0:
             currency_type = request.POST.get('pln_to_currency_type')
             result = pln_to_currency(pln_value, currency_type, rates)
             exchange_type = 'pln_to_currency'
-        elif currency_value:
+        elif currency_value and float(currency_value) > 0:
             currency_type = request.POST.get('currency_type_to_pln')
             result = currency_to_pln(currency_value, currency_type, rates)
             exchange_type = 'currency_to_pln'

@@ -11,8 +11,8 @@
     {% csrf_token %}
     <div class="row justify-content-center mt-2">
         <div class="col-auto">
-            <label>Enter the amount pln</label>
-            <input type="text" name="pln_value" class="form-control mb-2">
+            <label>Enter the amount PLN</label>
+            <input type="number" name="pln_value" class="form-control mb-2">
             <label>Select to which currency</label>
             <br>
             <select class="js-example-basic-single" name="pln_to_currency_type">
@@ -23,7 +23,7 @@
         </div>
         <div class="col-auto">
             <label>Enter the currency amount</label>
-            <input type="text" name="currency_value" class="form-control mb-2">
+            <input type="number" name="currency_value" class="form-control mb-2">
             <label>Select from which currency</label>
             <br>
             <select class="js-example-basic-single" name="currency_type_to_pln">
