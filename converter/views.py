@@ -28,9 +28,8 @@ def currency_to_pln(currency_value, currency_type, rates):
 def main_converter(request):
     template_name = 'converter/base.html'
     rates = get_exchange_rates()
-    result = None
+    result, currency_type, pln_value, currency_value = None, None, None, None
     exchange_type = ""
-    currency_type = None
 
     if request.method == "POST":
         pln_value = request.POST.get('pln_value')
@@ -50,5 +49,7 @@ def main_converter(request):
         'rates': rates,
         'exchange_type': exchange_type,
         'currency': currency_type,
+        'pln_value': pln_value,
+        'currency_value': currency_value
     }
     return render(request, template_name, context)

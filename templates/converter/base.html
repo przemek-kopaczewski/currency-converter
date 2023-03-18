@@ -41,10 +41,10 @@
             {% if result is None %}
             {% else %}
                 {% if exchange_type == "pln_to_currency" %}
-                    <p>PLN value to {{ currency }}:</p>
+                    <p>{{ pln_value }} PLN to {{ currency }}:</p>
                     {{ result }} {{ currency }}
                 {% elif exchange_type == "currency_to_pln" %}
-                    <p>{{ currency }} value to PLN:</p>
+                    <p>{{ currency_value }} {{ currency }} to PLN:</p>
                     {{ result }} PLN
                 {% endif %}
             {% endif %}

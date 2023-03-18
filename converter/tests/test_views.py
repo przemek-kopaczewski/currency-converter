@@ -1,5 +1,6 @@
 from django.test import TestCase
-from converter.views import get_exchange_rates, pln_to_currency, currency_to_pln, main_converter
+from converter.views import get_exchange_rates, pln_to_currency, currency_to_pln
+from converter.urls import main_converter
 
 
 class TestViews(TestCase):
